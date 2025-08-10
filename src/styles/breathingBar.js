@@ -1,18 +1,11 @@
 import chalk from "chalk";
 import { dimColor } from "../utils.js";
+import { loadUserConfig } from "../config/config.js";
 
-export async function breathingBar(minutes, userConfig = {}) {
+export async function breathingBar(minutes) {
+  const userConfig = loadUserConfig();
   const config = {
-    mode: "pulse", // "pulse" | "static"
-    pulseDuration: 4000,
-    anticipationSteps: 2,
-    steps: 30,
-    barLength: 40,
-    palette: {
-      complete: [102, 153, 153], // muted teal
-      anticipation: [179, 204, 204], // pale teal
-      current: [204, 153, 102], // warm sand
-    },
+    palette: userConfig.palette,
     ...userConfig,
   };
 
@@ -75,7 +68,7 @@ export async function breathingBar(minutes, userConfig = {}) {
         }
       }
       const percentage = Math.floor((progress / config.steps) * 100);
-      process.stdout.write(`\r[${bar}] ${percentage}%`);
+      process.stdout.write(`\r${bar} ${percentage}%`);
 
       if (progress >= config.steps) {
         process.stdout.write("\x1B[?25h\n"); // show cursor
@@ -89,7 +82,7 @@ export async function breathingBar(minutes, userConfig = {}) {
 
     const animationInterval = setInterval(drawBar, 16);
     process.on("SIGINT", () => {
-      clearInterval(stepInterval);
+      // clearInterval(stepInterval);
       clearInterval(animationInterval);
       process.stdout.write("\x1B[?25h\n");
       process.exit(0);

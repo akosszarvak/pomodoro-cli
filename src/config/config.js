@@ -18,9 +18,9 @@ export function createSampleConfig() {
       steps: 30,
       barLength: 40,
       palette: {
-        complete: [102, 153, 153], // muted teal
-        anticipation: [179, 204, 204], // pale teal
-        current: [204, 153, 102], // warm sand
+        complete: [139, 166, 142],
+        anticipation: [200, 214, 202],
+        current: [210, 180, 145],
       },
     };
 
