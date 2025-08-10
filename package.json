@@ -7,10 +7,13 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "description": "",
   "type": "module",
   "bin": {
     "pomodoro": "./bin/index.js"
+  },
+  "dependencies": {
+    "chalk": "^5.5.0"
   }
 }
