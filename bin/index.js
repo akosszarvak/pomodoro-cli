@@ -7,7 +7,6 @@ import {
 import { startPomodoro } from "../src/timer.js";
 
 createSampleConfig();
-createAsciiArtFile();
 
 // ===== Parse CLI Args =====
 const args = process.argv.slice(2);

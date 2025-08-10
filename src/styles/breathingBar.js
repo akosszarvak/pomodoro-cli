@@ -2,7 +2,6 @@ import chalk from "chalk";
 import { dimColor } from "../utils.js";
 
 export async function breathingBar(minutes, userConfig = {}) {
-  console.log("userconfig", userConfig);
   const config = {
     mode: "pulse", // "pulse" | "static"
     pulseDuration: 4000,
