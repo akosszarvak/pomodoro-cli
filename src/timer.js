@@ -1,9 +1,6 @@
-import { asciiStyle } from "./styles/asciiStyle.js";
-
 import { breathingBar } from "./styles/breathingBar.js";
 
 const styles = {
-  ascii: asciiStyle,
   breathing: breathingBar,
 };
 

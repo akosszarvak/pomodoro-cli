@@ -1,4 +1,4 @@
-import { exec, spawn } from "child_process";
+import { spawn } from "child_process";
 
 import fs from "fs";
 import path from "path";
@@ -6,7 +6,6 @@ import os from "os";
 
 const configDir = path.join(os.homedir(), ".pomodoro");
 const configFile = path.join(configDir, "config.json");
-const asciiArtFile = path.join(configDir, "ascii-art.json");
 
 export function createSampleConfig() {
   if (!fs.existsSync(configDir)) {
@@ -90,75 +89,3 @@ export function showConfigPath() {
   console.log(`Config file: ${configFile}`);
   console.log(`Config directory: ${configDir}`);
 }
-
-export function createAsciiArtFile() {
-  if (!fs.existsSync(configDir)) {
-    fs.mkdirSync(configDir, { recursive: true });
-  }
-
-  if (!fs.existsSync(asciiArtFile)) {
-    const defaultAsciiCollection = {
-      "default": ` 
-      /\_/\
-     ( o.o )
-      > ^ < 
-     /     \
-    |       |
-   /| |   | |\
-  (_|_|___|_|_)
-    `,
-    };
-    fs.writeFileSync(
-      asciiArtFile,
-      JSON.stringify(defaultAsciiCollection, null, 2)
-    );
-
-    console.log(`\n Created ASCII art collection at ${asciiArtFile}`);
-    console.log(" Add your own ASCII art with custom names!\n");
-  }
-}
-
-export function loadAsciiArt(artName = "default") {
-  try {
-    if (fs.existsSync(asciiArtFile)) {
-      const collection = JSON.parse(fs.readFileSync(asciiArtFile, "utf-8"));
-      if (collection[artName]) {
-        return collection[artName];
-      } else {
-        console.warn(`ASCII art "${artName}" not found, using default`);
-        return collection["default"] || "Focus time!";
-      }
-    }
-  } catch (e) {
-    console.error("Error reading ASCII art file:", e.message);
-  }
-  return `
-      /\_/\
-     ( o.o )
-      > ^ < 
-     /     \
-    |       |
-   /| |   | |\
-  (_|_|___|_|_)
-`;
-}
-
-export function listAsciiArt() {
-  try {
-    if (fs.existsSync(asciiArtFile)) {
-      const collection = JSON.parse(fs.readFileSync(asciiArtFile, "utf-8"));
-      console.log("Available ASCII art:");
-      Object.keys(collection).forEach((name) => {
-        console.log(`  - ${name}`);
-      });
-    } else {
-      console.log(
-        "ASCII art file doesn't exist yet. Run a session to create it."
-      );
-    }
-  } catch (e) {
-    console.error("Error reading ASCII art file:", e.message);
-  }
-}
-
-export const getAsciiArtFile = () => asciiArtFile;

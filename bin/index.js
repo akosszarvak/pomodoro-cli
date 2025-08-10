@@ -3,7 +3,6 @@ import {
   createSampleConfig,
   loadUserConfig,
   openConfigFile,
-  createAsciiArtFile,
 } from "../src/config/config.js";
 import { startPomodoro } from "../src/timer.js";
 
