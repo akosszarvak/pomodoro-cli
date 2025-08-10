@@ -14,7 +14,7 @@ export function createSampleConfig() {
 
   if (!fs.existsSync(configFile)) {
     const sampleConfig = {
-      mode: "pulse",
+      mode: "pulse", // "pulse" | "static"
       steps: 30,
       barLength: 40,
       palette: {

@@ -1,12 +1,16 @@
 {
-  "name": "pomodoro",
+  "name": "pomodoro-breath",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "pomodoro",
+    "timer",
+    "cli"
+  ],
+  "author": "Ákos Szarvák",
   "license": "MIT",
   "description": "",
   "type": "module",
